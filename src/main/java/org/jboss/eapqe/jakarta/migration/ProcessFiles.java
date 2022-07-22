@@ -42,6 +42,8 @@ public class ProcessFiles extends SimpleFileVisitor<Path> {
                     throw new RuntimeException(e);
                 } catch (DependencyResolutionException e) {
                     throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
             }
         } else {
