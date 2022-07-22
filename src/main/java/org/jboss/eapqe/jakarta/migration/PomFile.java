@@ -130,12 +130,10 @@ public class PomFile {
             throw new IOException(String.format("error when in \"mvn dependency:tree -f %s\": %s", path.toFile().getAbsolutePath(), result.getOutput()));
         }
         String depTreeStr = result.getOutput();
-        System.out.println(depTreeStr);
         for (String dep : dependencies) {
-            if (depTreeStr.contains(dep)) {
-                System.out.println("dependency found: " + dep);
-            }
+            depTreeStr = depTreeStr.replace(dep, ANSI_RED_BACKGROUND + ANSI_YELLOW + dep + ANSI_RESET);
         }
+        System.out.println(depTreeStr);
     }
     private OsCommandRunner getOsCommandRunner() {
         if(this.osCommandRunner == null){
