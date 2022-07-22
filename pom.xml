@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>jakarta-migration</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!--
+            jakarta.activation
+            jakarta.annotation
+            jakarta.batch
+
+            jakarta.decorator (part of jakarta.enterprise)
+
+            jakarta.enterprise.context
+            jakarta.enterprise.context.control
+            jakarta.enterprise.context.spi
+            jakarta.enterprise.event
+            jakarta.enterprise.inject
+            jakarta.enterprise.inject.literal
+            jakarta.enterprise.inject.se
+            jakarta.enterprise.inject.spi
+            jakarta.enterprise.inject.spi.configurator
+            jakarta.enterprise.util
+
+            jakarta.enterprise.concurrent
+
+            jakarta.ejb
+            jakarta.el
+
+            jakarta.faces
+            jakarta.inject
+
+            jakarta.interceptor
+            jakarta.jms
+            jakarta.json
+            jakarta.jws
+
+            jakarta.mail
+            jakarta.persistence
+
+            jakarta.resource
+
+            jakarta.security.auth.message
+            jakarta.security.enterprise
+            jakarta.security.jacc
+
+            jakarta.servlet
+            jakarta.transaction
+            jakarta.validation
+            jakarta.websocket
+            jakarta.ws.rs
+            jakarta.xml.bind
+            jakarta.xml.soap
+            jakarta.xml.ws
+        -->
+        <!-- https://mvnrepository.com/artifact/jakarta.activation/jakarta.activation-api -->
+        <dependency>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
+            <version>2.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api -->
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>2.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.batch/jakarta.batch-api -->
+        <dependency>
+            <groupId>jakarta.batch</groupId>
+            <artifactId>jakarta.batch-api</artifactId>
+            <version>2.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api -->
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.enterprise.concurrent/jakarta.enterprise.concurrent-api -->
+        <dependency>
+            <groupId>jakarta.enterprise.concurrent</groupId>
+            <artifactId>jakarta.enterprise.concurrent-api</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.ejb/jakarta.ejb-api -->
+        <dependency>
+            <groupId>jakarta.ejb</groupId>
+            <artifactId>jakarta.ejb-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.el/jakarta.el-api -->
+        <dependency>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
+            <version>5.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.faces/jakarta.faces-api -->
+        <dependency>
+            <groupId>jakarta.faces</groupId>
+            <artifactId>jakarta.faces-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api -->
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+            <version>2.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.interceptor/jakarta.interceptor-api -->
+        <dependency>
+            <groupId>jakarta.interceptor</groupId>
+            <artifactId>jakarta.interceptor-api</artifactId>
+            <version>2.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.jms/jakarta.jms-api -->
+        <dependency>
+            <groupId>jakarta.jms</groupId>
+            <artifactId>jakarta.jms-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.json/jakarta.json-api -->
+        <dependency>
+            <groupId>jakarta.json</groupId>
+            <artifactId>jakarta.json-api</artifactId>
+            <version>2.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.jws/jakarta.jws-api -->
+        <dependency>
+            <groupId>jakarta.jws</groupId>
+            <artifactId>jakarta.jws-api</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api -->
+        <dependency>
+            <groupId>jakarta.mail</groupId>
+            <artifactId>jakarta.mail-api</artifactId>
+            <version>2.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.resource/jakarta.resource-api -->
+        <dependency>
+            <groupId>jakarta.resource</groupId>
+            <artifactId>jakarta.resource-api</artifactId>
+            <version>2.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/jakarta.security.enterprise/jakarta.security.enterprise-api -->
+        <dependency>
+            <groupId>jakarta.security.enterprise</groupId>
+            <artifactId>jakarta.security.enterprise-api</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.security.jacc/jakarta.security.jacc-api -->
+        <dependency>
+            <groupId>jakarta.security.jacc</groupId>
+            <artifactId>jakarta.security.jacc-api</artifactId>
+            <version>1.6.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.security.auth.message/jakarta.security.auth.message-api -->
+        <dependency>
+            <groupId>jakarta.security.auth.message</groupId>
+            <artifactId>jakarta.security.auth.message-api</artifactId>
+            <version>2.0.0-RC1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.transaction/jakarta.transaction-api -->
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <version>2.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-api -->
+        <dependency>
+            <groupId>jakarta.websocket</groupId>
+            <artifactId>jakarta.websocket-api</artifactId>
+            <version>2.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api -->
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.xml.soap/jakarta.xml.soap-api -->
+        <dependency>
+            <groupId>jakarta.xml.soap</groupId>
+            <artifactId>jakarta.xml.soap-api</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.xml.ws/jakarta.xml.ws-api -->
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- command line tool -->
+
+        <!-- https://mvnrepository.com/artifact/info.picocli/picocli -->
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.6.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-model -->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-model</artifactId>
+            <version>3.8.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-demo-snippets</artifactId>
+            <version>1.8.2-SNAPSHOT</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.jboss.eapqe.jakarta.migration.JavaxToJakarta</mainClass>
+                        </manifest>
+                    </archive>
+                    <finalName>${project.artifactId}</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
