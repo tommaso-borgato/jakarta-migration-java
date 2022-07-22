@@ -18,14 +18,9 @@ import org.eclipse.aether.collection.CollectResult;
 import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.graph.DependencyFilter;
-import org.eclipse.aether.repository.LocalArtifactRegistration;
 import org.eclipse.aether.repository.LocalRepository;
-import org.eclipse.aether.repository.LocalRepositoryManager;
-import org.eclipse.aether.repository.RemoteRepository;
-import org.eclipse.aether.resolution.ArtifactResult;
 import org.eclipse.aether.resolution.DependencyRequest;
 import org.eclipse.aether.resolution.DependencyResolutionException;
-import org.eclipse.aether.spi.localrepo.LocalRepositoryManagerFactory;
 import org.eclipse.aether.util.artifact.JavaScopes;
 import org.eclipse.aether.util.filter.DependencyFilterUtils;
 
@@ -37,52 +32,12 @@ import java.util.List;
 
 import static org.apache.maven.resolver.examples.util.Booter.SERVICE_LOCATOR;
 
+/**
+ * https://github.com/apache/maven-resolver/blob/master/maven-resolver-demos/maven-resolver-demo-snippets/src/main/java/org/apache/maven/resolver/examples/GetDependencyTree.java
+ */
 public class PomFile {
 
-    private final static List<String> dependencies = Arrays.asList(
-        "javax.ejb",
-                "javax.activation",
-                "javax.annotation",
-                "javax.annotation.security",
-                "javax.annotation.sql",
-                "javax.batch.api",
-                "javax.batch.operations",
-                "javax.batch.runtime",
-                "javax.decorator",
-                "javax.el",
-                "javax.enterprise", // added by me, not in javadoc
-                "javax.enterprise.concurrent",
-                "javax.enterprise.context",
-                "javax.enterprise.context.control",
-                "javax.enterprise.context.spi",
-                "javax.enterprise.event",
-                "javax.enterprise.inject",
-                "javax.enterprise.inject.literal",
-                "javax.enterprise.inject.se",
-                "javax.enterprise.inject.spi",
-                "javax.enterprise.inject.spi.configurator",
-                "javax.enterprise.util",
-                "javax.faces",
-                "javax.inject",
-                "javax.interceptor",
-                "javax.jms",
-                "javax.json",
-                "javax.jws",
-                "javax.mail",
-                "javax.persistence",
-                "javax.resource",
-                "javax.security.auth.message",
-                "javax.security.enterprise",
-                "javax.security.jacc",
-                "javax.servlet",
-                "javax.transaction",
-                "javax.validation",
-                "javax.websocket",
-                "javax.ws.rs",
-                "javax.xml.bind",
-                "javax.xml.soap",
-                "javax.xml.ws"
-    );
+
 
     private Path path;
 
@@ -128,7 +83,7 @@ public class PomFile {
 
         CollectResult collectResult = system.collectDependencies( session, collectRequest );
 
-        collectResult.getRoot().accept( new ConsoleDependencyGraphDumper() );
+        collectResult.getRoot().accept( new JavaxDependencyGraphDumper() );
 
 
         /*List<ArtifactResult> artifactResults =
