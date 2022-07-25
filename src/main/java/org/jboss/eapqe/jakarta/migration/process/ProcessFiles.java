@@ -1,8 +1,6 @@
-package org.jboss.eapqe.jakarta.migration;
+package org.jboss.eapqe.jakarta.migration.process;
 
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
-import org.eclipse.aether.collection.DependencyCollectionException;
-import org.eclipse.aether.resolution.DependencyResolutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,21 +26,25 @@ public class ProcessFiles extends SimpleFileVisitor<Path> {
         } else if (attr.isRegularFile()) {
             //System.out.format("Regular file: %s ", file);
             if (file.toFile().getName().endsWith(".java")) {
-                //LOGGER.info("Processing java file {}", file.toFile().getAbsolutePath());
+                LOGGER.info("Processing java file {}", file.toFile().getAbsolutePath());
                 JavaSourceFile javaSourceFile = new JavaSourceFile(file);
                 javaSourceFile.process();
-            } if (file.toFile().getName().equalsIgnoreCase("pom.xml")) {
+            } else if (file.toFile().getName().equalsIgnoreCase("pom.xml")) {
                 LOGGER.info("Processing pom.xml file {}", file.toFile().getAbsolutePath());
                 PomFile pomFile = new PomFile(file);
                 try {
                     pomFile.process();
                 } catch (XmlPullParserException e) {
                     throw new RuntimeException(e);
-                } catch (DependencyCollectionException e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
-                } catch (DependencyResolutionException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
+                }
+            } else if (file.toFile().getName().endsWith(".xml")) {
+                LOGGER.info("Processing XML file {}", file.toFile().getAbsolutePath());
+                XmlFile xmlFile = new XmlFile(file);
+                try {
+                    xmlFile.process();
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }

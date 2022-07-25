@@ -1,5 +1,6 @@
 package org.jboss.eapqe.jakarta.migration;
 
+import org.jboss.eapqe.jakarta.migration.process.ProcessFiles;
 import picocli.CommandLine;
 
 import java.io.IOException;

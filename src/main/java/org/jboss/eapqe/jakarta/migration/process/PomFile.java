@@ -1,4 +1,4 @@
-package org.jboss.eapqe.jakarta.migration;
+package org.jboss.eapqe.jakarta.migration.process;
 
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
