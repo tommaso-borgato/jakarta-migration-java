@@ -25,7 +25,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.apache.maven.resolver.examples.util.Booter.SERVICE_LOCATOR;
 
@@ -78,6 +80,88 @@ public class PomFile {
             "javax.xml.soap",
             "javax.xml.ws"
     );
+
+    static Map<String, String> transformed;
+    static {
+        transformed = new HashMap<>();
+        transformed.put("ironjacamar-common-impl","ironjacamar-common-impl-jakarta");
+        transformed.put("wildfly-mail","wildfly-mail-jakarta");
+        transformed.put("wildfly-rts","wildfly-rts-jakarta");
+        transformed.put("ironjacamar-deployers-common","ironjacamar-deployers-common-jakarta");
+        transformed.put("openjdk-orb","openjdk-orb-jakarta");
+        transformed.put("jboss-ejb-client","jboss-ejb-client-jakarta");
+        transformed.put("wildfly-datasources-agroal","wildfly-datasources-agroal-jakarta");
+        transformed.put("artemis-journal","artemis-jakarta-ra");
+        transformed.put("jboss-iiop-client","jboss-iiop-client-jakarta");
+        transformed.put("narayana-jts-integration","narayana-jts-integration-jakarta");
+        transformed.put("jbossxts","jbossxts-jakarta");
+        transformed.put("hornetq-jms-client","hornetq-jakarta-client");
+        transformed.put("ironjacamar-core-api","ironjacamar-core-api-jakarta");
+        transformed.put("wildfly-xts","wildfly-xts-jakarta");
+        transformed.put("restat-bridge","restat-bridge-jakarta");
+        transformed.put("jboss-transaction-spi","jboss-transaction-spi-jakarta");
+        transformed.put("wildfly-microprofile-fault-tolerance-smallrye-executor","wildfly-microprofile-fault-tolerance-smallrye-executor-jakarta");
+        transformed.put("compensations","compensations-jakarta");
+        transformed.put("jboss-metadata-common","jboss-metadata-common-jakarta");
+        transformed.put("wildfly-undertow","wildfly-undertow-jakarta");
+        transformed.put("wildfly-clustering-singleton-extension","wildfly-testsuite-shared-jakarta");
+        transformed.put("jbosstxbridge","jbosstxbridge-jakarta");
+        transformed.put("wildfly-testsuite-shared","wildfly-testsuite-shared-jakarta");
+        transformed.put("wildfly-mod_cluster-undertow","wildfly-mod_cluster-undertow-jakarta");
+        transformed.put("wildfly-client-all","wildfly-client-all-jakarta");
+        transformed.put("wildfly-microprofile-openapi-smallrye","wildfly-microprofile-openapi-smallrye-jakarta");
+        transformed.put("wildfly-microprofile-fault-tolerance-smallrye-extension","wildfly-microprofile-fault-tolerance-smallrye-extension-jakarta");
+        transformed.put("wildfly-microprofile-opentracing-smallrye","wildfly-microprofile-opentracing-smallrye-jakarta");
+        transformed.put("wildfly-transactions","wildfly-transactions-jakarta");
+        transformed.put("wildfly-iiop-openjdk","wildfly-iiop-openjdk-jakarta");
+        transformed.put("ironjacamar-validator","ironjacamar-validator-jakarta");
+        transformed.put("wildfly-weld","wildfly-weld-bean-validation-jakarta");
+        transformed.put("wildfly-microprofile-opentracing-extension","wildfly-microprofile-opentracing-extension-jakarta");
+        transformed.put("ironjacamar-core-impl","ironjacamar-core-impl-jakarta");
+        transformed.put("wildfly-weld-bean-validation","wildfly-weld-common-jakarta");
+        transformed.put("wildfly-bean-validation","wildfly-bean-validation-jakarta");
+        transformed.put("wildfly-clustering-weld-ejb","wildfly-clustering-weld-ejb-jakarta");
+        transformed.put("wildfly-weld-transactions","wildfly-weld-transactions-jakarta");
+        transformed.put("wildfly-ee-security","wildfly-ee-security-jakarta");
+        transformed.put("jboss-jakarta-xml-ws-api_3.0_spec","jboss-jakarta-xml-ws-api_4.0_spec");
+        transformed.put("wildfly-weld-common","wildfly-weld-ejb-jakarta");
+        transformed.put("wildfly-weld-jpa","wildfly-weld-jpa-jakarta");
+        transformed.put("wildfly-clustering-weld-core","wildfly-clustering-weld-core-jakarta");
+        transformed.put("wildfly-weld-ejb","wildfly-weld-jakarta");
+        transformed.put("artemis-server","artemis-jakarta-service-extensions");
+        transformed.put("wildfly-ejb3","wildfly-ejb3-jakarta");
+        transformed.put("artemis-jdbc-store","artemis-jakarta-client");
+        transformed.put("artemis-selector","artemis-jakarta-server");
+        transformed.put("wildfly-jsf","wildfly-jsf-injection-jakarta");
+        transformed.put("${wildfly-testsuite-shared.artifactId}","wildfly-testsuite-shared-jakarta");
+        transformed.put("wildfly-clustering-web-undertow","wildfly-clustering-web-undertow-jakarta");
+        transformed.put("wildfly-microprofile-health-smallrye","wildfly-microprofile-health-smallrye-jakarta");
+        transformed.put("wildfly-http-transaction-client","wildfly-http-transaction-client-jakarta");
+        transformed.put("wildfly-clustering-weld-web","wildfly-clustering-weld-web-jakarta");
+        transformed.put("wildfly-ee","wildfly-ee-jakarta");
+        transformed.put("artemis-ra","artemis-jakarta-ra");
+        transformed.put("txframework","txframework-jakarta");
+        transformed.put("ironjacamar-common-spi","ironjacamar-common-spi-jakarta");
+        transformed.put("wildfly-microprofile-reactive-streams-operators-cdi-provider","wildfly-microprofile-reactive-streams-operators-cdi-provider-jakarta");
+        transformed.put("artemis-service-extensions","artemis-jakarta-service-extensions");
+        transformed.put("wildfly-jaxrs","wildfly-jaxrs-jakarta");
+        transformed.put("wildfly-messaging-activemq-injection","wildfly-messaging-activemq-injection-jakarta");
+        transformed.put("wildfly-web-common","wildfly-web-common-jakarta");
+        transformed.put("ironjacamar-common-api","ironjacamar-common-api-jakarta");
+        transformed.put("restat-integration","restat-integration-jakarta");
+        transformed.put("jipijapa-hibernate5-3","jipijapa-eclipselink-jakarta");
+        transformed.put("wildfly-batch-jberet","wildfly-batch-jberet-jakarta");
+        transformed.put("wildfly-microprofile-jwt-smallrye","wildfly-microprofile-jwt-smallrye-jakarta");
+        transformed.put("wildfly-connector","wildfly-connector-jakarta");
+        transformed.put("wildfly-weld-spi","wildfly-weld-spi-jakarta");
+        transformed.put("restat-api","restat-api-jakarta");
+        transformed.put("jboss-metadata-ejb","jboss-metadata-ejb-jakarta");
+        transformed.put("narayana-jts-idlj","narayana-jts-idlj-jakarta");
+        transformed.put("ironjacamar-jdbc","ironjacamar-jdbc-jakarta");
+        transformed.put("wildfly-jpa","wildfly-jpa-jakarta");
+        transformed.put("wildfly-weld-webservices","wildfly-weld-webservices-jakarta");
+        transformed.put("restat-util","restat-util-jakarta");
+    }
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -133,6 +217,10 @@ public class PomFile {
         for (String dep : dependencies) {
             depTreeStr = depTreeStr.replace(dep, ANSI_RED_BACKGROUND + ANSI_YELLOW + dep + ANSI_RESET);
         }
+        for (Map.Entry<String, String> entry : transformed.entrySet()) {
+            depTreeStr = depTreeStr.replace(entry.getKey(), ANSI_RED_BACKGROUND + ANSI_YELLOW + entry.getKey() + " --> " + entry.getValue() + ANSI_RESET);
+        }
+
         System.out.println(depTreeStr);
     }
     private OsCommandRunner getOsCommandRunner() {
