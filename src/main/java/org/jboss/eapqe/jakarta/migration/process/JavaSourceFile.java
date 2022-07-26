@@ -135,6 +135,7 @@ public class JavaSourceFile {
         javaxPackages.put("javax.servlet.jsp.jstl.tlv.", "jakarta.servlet.jsp.jstl.tlv.");
         javaxPackages.put("javax.servlet.jsp.tagext.", "jakarta.servlet.jsp.tagext.");
         javaxPackages.put("javax.servlet.", "jakarta.servlet.");
+        javaxPackages.put("javax.transaction.xa.", "jakarta.transaction.xa.");
         javaxPackages.put("javax.transaction.", "jakarta.transaction.");
         javaxPackages.put("javax.validation.bootstrap.", "jakarta.validation.bootstrap.");
         javaxPackages.put("javax.validation.constraints.", "jakarta.validation.constraints.");
@@ -182,6 +183,7 @@ public class JavaSourceFile {
         String initialContent = Files.readString(path);
         String finalContent = new String(initialContent.getBytes());
 
+        // Replace import statements and fully qualified class names
         for (Map.Entry<String, String> entry : javaxPackages.entrySet()) {
             finalContent = finalContent.replace(entry.getKey(), entry.getValue());
         }
