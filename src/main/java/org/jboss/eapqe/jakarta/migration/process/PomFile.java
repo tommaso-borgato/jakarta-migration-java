@@ -18,6 +18,7 @@ import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.repository.LocalRepository;
 import org.eclipse.aether.resolution.DependencyResolutionException;
+import org.jboss.eapqe.jakarta.migration.JavaxToJakarta;
 import org.jboss.eapqe.jakarta.migration.os.OsCommandResult;
 import org.jboss.eapqe.jakarta.migration.os.OsCommandRunner;
 
@@ -36,22 +37,102 @@ import static org.apache.maven.resolver.examples.util.Booter.SERVICE_LOCATOR;
  */
 public class PomFile {
 
-    private final static List<String> dependencies = Arrays.asList(
-            "javax.ejb",
-            "javax.activation",
+    // TODO: enrich the list
+    private final static List<String> javaEE8dependencies = Arrays.asList(
+            "javaee-api",
+            "activation",
+            "activation-api",
+            "cdi-api",
+            "javaee-api",
+            "javaee-web-api",
+            "annotation-api",
+            "annotations-api",
+            "batch-api",
+            "ejb-api",
+            "el-api",
+            "enterprise.concurrent-api",
+            "concurrent-api",
+            "enterprise.deploy-api",
+            "deploy-api",
+            "faces-api",
+            "faces",
+            "inject",
+            "interceptor-api",
+            "jms-api",
+            "json-api",
+            "json.bind-api",
+            "xml.bind-api",
+            "xml.ws-api",
+            "ws-api",
+            "mail",
+            "management.j2ee-api",
+            "j2ee-api",
+            "persistence-api",
+            "persistence",
+            "resource-api",
+            "security.auth.message-api",
+            "message-api",
+            "security.enterprise-api",
+            "enterprise-api",
+            "security.jacc-api",
+            "jacc-api",
+            "servlet-api",
+            "servlet.jsp-api",
+            "jsp-api",
+            "servlet.jsp.jstl-api",
+            "jstl-api",
+            "transaction-api",
+            "websocket-api",
+            "websocket-client-api",
+            "ws.rs-api",
+            "rs-api",
+            "xml.registry-api",
+            "registry-api",
+            "xml.rpc-api",
+            "rpc-api",
+            "jsf-api",
+            "jsf-impl",
+            "servlet-api",
+            "soap-api",
+            "validation-api",
+            "authentication-api",
+            "authorization-api",
+            "inject-api",
+            "jws-api",
+            "mail-api"
+    );
+
+    private final static List<String> javaEE8Apis = Arrays.asList(
             "javax.annotation",
+            "javax.activation",
             "javax.annotation.security",
             "javax.annotation.sql",
             "javax.batch.api",
+            "javax.batch.api.chunk",
+            "javax.batch.api.chunk.listener",
+            "javax.batch.api.listener",
+            "javax.batch.api.partition",
             "javax.batch.operations",
             "javax.batch.runtime",
+            "javax.batch.runtime.context",
             "javax.decorator",
+            "javax.ejb",
+            "javax.ejb.embeddable",
+            "javax.ejb.spi",
             "javax.el",
-            "javax.enterprise", // added by me, not in javadoc
             "javax.enterprise.concurrent",
             "javax.enterprise.context",
             "javax.enterprise.context.control",
             "javax.enterprise.context.spi",
+            "javax.enterprise",
+            "javax.enterprise.deploy.model",
+            "javax.enterprise.deploy.model.exceptions",
+            "javax.enterprise.deploy.shared",
+            "javax.enterprise.deploy.shared.factories",
+            "javax.enterprise.deploy.spi",
+            "javax.enterprise.deploy.spi.exceptions",
+            "javax.enterprise.deploy.spi.factories",
+            "javax.enterprise.deploy.spi.status",
             "javax.enterprise.event",
             "javax.enterprise.inject",
             "javax.enterprise.inject.literal",
@@ -60,25 +141,88 @@ public class PomFile {
             "javax.enterprise.inject.spi.configurator",
             "javax.enterprise.util",
             "javax.faces",
+            "javax.faces.annotation",
+            "javax.faces.application",
+            "javax.faces.bean",
+            "javax.faces.component",
+            "javax.faces.component.behavior",
+            "javax.faces.component.html",
+            "javax.faces.component.search",
+            "javax.faces.component.visit",
+            "javax.faces.context",
+            "javax.faces.convert",
+            "javax.faces.el",
+            "javax.faces.event",
+            "javax.faces.flow",
+            "javax.faces.flow.builder",
+            "javax.faces.lifecycle",
+            "javax.faces.model",
+            "javax.faces.push",
+            "javax.faces.render",
+            "javax.faces.validator",
+            "javax.faces.view",
+            "javax.faces.view.facelets",
+            "javax.faces.webapp",
             "javax.inject",
             "javax.interceptor",
             "javax.jms",
             "javax.json",
             "javax.jws",
             "javax.mail",
+            "javax.mail.event",
+            "javax.mail.internet",
+            "javax.mail.search",
+            "javax.mail.util",
+            "javax.management.j2ee",
+            "javax.management.j2ee.statistics",
             "javax.persistence",
+            "javax.persistence.criteria",
+            "javax.persistence.metamodel",
+            "javax.persistence.spi",
             "javax.resource",
+            "javax.resource.cci",
+            "javax.resource.spi",
+            "javax.resource.spi.endpoint",
+            "javax.resource.spi.security",
+            "javax.resource.spi.work",
             "javax.security.auth.message",
+            "javax.security.auth.message.callback",
+            "javax.security.auth.message.config",
+            "javax.security.auth.message.module",
             "javax.security.enterprise",
+            "javax.security.enterprise.authentication.mechanism.http",
+            "javax.security.enterprise.credential",
+            "javax.security.enterprise.identitystore",
             "javax.security.jacc",
             "javax.servlet",
+            "javax.servlet.annotation",
+            "javax.servlet.descriptor",
+            "javax.servlet.http",
+            "javax.servlet.jsp",
+            "javax.servlet.jsp.el",
+            "javax.servlet.jsp.jstl.core",
+            "javax.servlet.jsp.jstl.fmt",
+            "javax.servlet.jsp.jstl.sql",
+            "javax.servlet.jsp.jstl.tlv",
+            "javax.servlet.jsp.tagext",
             "javax.transaction",
+            "javax.transaction.xa",
             "javax.validation",
+            "javax.validation.bootstrap",
+            "javax.validation.constraints",
+            "javax.validation.constraintvalidation",
+            "javax.validation.executable",
+            "javax.validation.groups",
+            "javax.validation.metadata",
+            "javax.validation.spi",
+            "javax.validation.valueextraction",
             "javax.websocket",
+            "javax.websocket.server",
             "javax.ws.rs",
             "javax.xml.bind",
             "javax.xml.soap",
-            "javax.xml.ws"
+            "javax.xml.ws",
+            "org.jboss.spec.javax"
     );
 
     static Map<String, String> transformed;
@@ -191,15 +335,21 @@ public class PomFile {
     }
 
     public void process() throws IOException, XmlPullParserException, DependencyCollectionException, DependencyResolutionException, InterruptedException {
-        MavenXpp3Reader reader = new MavenXpp3Reader();
-        Model model = reader.read(new FileReader(path.toFile()));
-        System.out.println(model.getId());
-        System.out.println(model.getGroupId());
-        System.out.println(model.getArtifactId());
-        System.out.println(model.getVersion());
-        //getDependencyTree(model, null);
+        if (!JavaxToJakarta.analyzeDependencies) {
+            return;
+        }
 
-        printDepTree();
+        if (false) {
+            MavenXpp3Reader reader = new MavenXpp3Reader();
+            Model model = reader.read(new FileReader(path.toFile()));
+            System.out.println(model.getId());
+            System.out.println(model.getGroupId());
+            System.out.println(model.getArtifactId());
+            System.out.println(model.getVersion());
+            getDependencyTree(model, null);
+        } else {
+            printDepTree();
+        }
 
         /*for (org.apache.maven.model.Dependency dependency : model.getDependencies()){
             getDependencyTree(model, dependency);
@@ -214,14 +364,26 @@ public class PomFile {
             throw new IOException(String.format("error when in \"mvn dependency:tree -f %s\": %s", path.toFile().getAbsolutePath(), result.getOutput()));
         }
         String depTreeStr = result.getOutput();
-        for (String dep : dependencies) {
-            depTreeStr = depTreeStr.replace(dep, ANSI_RED_BACKGROUND + ANSI_YELLOW + dep + ANSI_RESET);
-        }
-        for (Map.Entry<String, String> entry : transformed.entrySet()) {
-            depTreeStr = depTreeStr.replace(entry.getKey(), ANSI_RED_BACKGROUND + ANSI_YELLOW + entry.getKey() + " --> " + entry.getValue() + ANSI_RESET);
+
+        // poolish the output
+        depTreeStr = depTreeStr.replaceFirst("(?s).*\\[INFO\\] --- maven-dependency-plugin[^\\n]*", "");
+
+        // Java EE 8 APIs names
+        for (String dep : javaEE8dependencies) {
+            depTreeStr = depTreeStr.replace(dep, ANSI_YELLOW_BACKGROUND + ANSI_PURPLE + dep + ANSI_RESET);
         }
 
-        System.out.println(depTreeStr);
+        // Java EE 8 APIs packages names
+        for (String dep : javaEE8Apis) {
+            depTreeStr = depTreeStr.replace(dep, ANSI_YELLOW_BACKGROUND + ANSI_CYAN + dep + ANSI_RESET);
+        }
+
+        // WildFly transformed modules
+        for (Map.Entry<String, String> entry : transformed.entrySet()) {
+            depTreeStr = depTreeStr.replace(entry.getKey(), ANSI_YELLOW_BACKGROUND + ANSI_BLUE + entry.getKey() + " --> " + entry.getValue() + ANSI_RESET);
+        }
+
+        System.out.println("\n\n\n\ndepTreeStr:\n\n" + depTreeStr);
     }
     private OsCommandRunner getOsCommandRunner() {
         if(this.osCommandRunner == null){

@@ -1,5 +1,6 @@
 package org.jboss.eapqe.jakarta.migration.process;
 
+import org.jboss.eapqe.jakarta.migration.JavaxToJakarta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,10 +8,26 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class JavaSourceFile {
+
+    private final static List<String> javaEE8Apis = Arrays.asList(
+            // javax:javaee-api
+            "annotation.Resource.AuthenticationType",
+            "annotation.Generated",
+            "annotation.ManagedBean",
+            "annotation.PostConstruct",
+            "annotation.PreDestroy",
+            "annotation.Priority",
+            "annotation.Resource",
+            "annotation.Resources",
+            "annotation.security" +
+            "annotation.sql"
+    );
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JavaSourceFile.class);
     private Path path;
@@ -158,6 +175,10 @@ public class JavaSourceFile {
     }
 
     public void process() throws IOException {
+        if (!JavaxToJakarta.processJavaSources) {
+            return;
+        }
+
         String content = Files.readString(path);
 
         String finaltext = content.replaceAll("import javax.activation", "import jakarta.activation");

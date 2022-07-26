@@ -1,5 +1,6 @@
 package org.jboss.eapqe.jakarta.migration.process;
 
+import org.jboss.eapqe.jakarta.migration.JavaxToJakarta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,6 +73,10 @@ public class XmlFile {
     }
 
     public void process() throws IOException {
+        if (!(JavaxToJakarta.processXmlSchemaNamespaces || JavaxToJakarta.processPersistence)) {
+            return;
+        }
+
         String content = Files.readString(path);
 
         if (content.contains("http://xmlns.jcp.org/xml/ns/javaee/web-facesuicomponent_2_0.xsd")) {
