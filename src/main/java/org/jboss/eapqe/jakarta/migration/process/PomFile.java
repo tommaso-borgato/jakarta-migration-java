@@ -99,7 +99,9 @@ public class PomFile {
             "authorization-api",
             "inject-api",
             "jws-api",
-            "mail-api"
+            "mail-api",
+            "javax.mvc-api",
+            "mvc-api"
     );
 
     private final static List<String> javaEE8Apis = Arrays.asList(
