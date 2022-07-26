@@ -253,12 +253,11 @@
             <artifactId>maven-model</artifactId>
             <version>3.8.6</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.maven.resolver</groupId>
             <artifactId>maven-resolver-demo-snippets</artifactId>
             <version>1.8.2-SNAPSHOT</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
+        </dependency>-->
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>

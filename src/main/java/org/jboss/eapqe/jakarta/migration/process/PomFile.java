@@ -3,9 +3,9 @@ package org.jboss.eapqe.jakarta.migration.process;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
-import org.apache.maven.resolver.examples.util.Booter;
-import org.apache.maven.resolver.examples.util.ConsoleRepositoryListener;
-import org.apache.maven.resolver.examples.util.ConsoleTransferListener;
+//import org.apache.maven.resolver.examples.util.Booter;
+//import org.apache.maven.resolver.examples.util.ConsoleRepositoryListener;
+//import org.apache.maven.resolver.examples.util.ConsoleTransferListener;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.DefaultRepositorySystemSession;
 import org.eclipse.aether.RepositorySystem;
@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.apache.maven.resolver.examples.util.Booter.SERVICE_LOCATOR;
+//import static org.apache.maven.resolver.examples.util.Booter.SERVICE_LOCATOR;
 
 /**
  * https://github.com/apache/maven-resolver/blob/master/maven-resolver-demos/maven-resolver-demo-snippets/src/main/java/org/apache/maven/resolver/examples/GetDependencyTree.java
@@ -398,7 +398,7 @@ public class PomFile {
 
         System.out.println( "------------------------------------------------------------" );
 
-        RepositorySystem system = Booter.newRepositorySystem( Booter.selectFactory( new String[]{SERVICE_LOCATOR} ) );
+        /*RepositorySystem system = Booter.newRepositorySystem( Booter.selectFactory( new String[]{SERVICE_LOCATOR} ) );
 
         RepositorySystemSession session = newRepositorySystemSession( system );
 
@@ -412,12 +412,13 @@ public class PomFile {
 
         CollectResult collectResult = system.collectDependencies( session, collectRequest );
 
-        collectResult.getRoot().accept( new JavaxDependencyGraphDumper() );
+        collectResult.getRoot().accept( new JavaxDependencyGraphDumper() );*/
 
     }
 
     private DefaultRepositorySystemSession newRepositorySystemSession( RepositorySystem system )
     {
+        /*
         DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
 
         //LocalRepository localRepo = new LocalRepository( "target/local-repo" );
@@ -430,6 +431,7 @@ public class PomFile {
         // uncomment to generate dirty trees
         // session.setDependencyGraphTransformer( null );
 
-        return session;
+        return session;*/
+        return null;
     }
 }
