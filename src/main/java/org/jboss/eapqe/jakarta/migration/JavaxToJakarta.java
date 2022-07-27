@@ -10,6 +10,9 @@ import java.nio.file.Paths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Entry point
+ */
 @CommandLine.Command(name = "JavaxToJakarta", version = "JavaxToJakarta 1.0", mixinStandardHelpOptions = true)
 public class JavaxToJakarta implements Runnable {
 
@@ -46,6 +49,9 @@ public class JavaxToJakarta implements Runnable {
     )
     public static boolean processPersistence;
 
+    /**
+     * Process all files in the projects root directory according to the options specifies as command line arguments
+     */
     @Override
     public void run() {
         Path startingDir = Paths.get(directory);
@@ -59,15 +65,19 @@ public class JavaxToJakarta implements Runnable {
         LOGGER.info("processXmlSchemaNamespaces: {}", processXmlSchemaNamespaces);
         LOGGER.info("processPersistence: {}", processPersistence);
 
-        ProcessFiles pf = new ProcessFiles();
+        ProcessFiles fileProcessor = new ProcessFiles();
         try {
             LOGGER.info("Processing directory {}", startingDir.toFile().getAbsolutePath());
-            Files.walkFileTree(startingDir, pf);
+            Files.walkFileTree(startingDir, fileProcessor);
         } catch (IOException e) {
             throw new RuntimeException("Error processing files in directory " + directory, e);
         }
     }
 
+    /**
+     * Entry point
+     * @param args: see CommandLine options above
+     */
     public static void main(String[] args) {
         int exitCode = new CommandLine(new JavaxToJakarta()).execute(args);
         System.exit(exitCode);
