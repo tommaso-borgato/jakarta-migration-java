@@ -37,17 +37,10 @@ public class JavaxToJakarta implements Runnable {
 
     @CommandLine.Option(
             names = {"-xmlns", "--xml-schema-namespaces"},
-            description = "Process XML Schema Namespaces YES/NO",
+            description = "Process XML Schema Namespaces and properties YES/NO",
             arity = "0..1"
     )
     public static boolean processXmlSchemaNamespaces;
-
-    @CommandLine.Option(
-            names = {"-pers", "--persistence"},
-            description = "Process persistence XML files YES/NO",
-            arity = "0..1"
-    )
-    public static boolean processPersistence;
 
     /**
      * Process all files in the projects root directory according to the options specifies as command line arguments
@@ -63,7 +56,6 @@ public class JavaxToJakarta implements Runnable {
         LOGGER.info("analyzeDependencies: {}", analyzeDependencies);
         LOGGER.info("processJavaSources: {}", processJavaSources);
         LOGGER.info("processXmlSchemaNamespaces: {}", processXmlSchemaNamespaces);
-        LOGGER.info("processPersistence: {}", processPersistence);
 
         ProcessFiles fileProcessor = new ProcessFiles();
         try {
