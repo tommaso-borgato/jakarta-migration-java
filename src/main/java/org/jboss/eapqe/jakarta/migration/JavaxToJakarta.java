@@ -40,8 +40,8 @@ public class JavaxToJakarta implements Runnable {
     public static boolean processXmlSchemaNamespaces;
 
     @CommandLine.Option(
-            names = {"-prop", "--properties"},
-            description = "Process properties in XML files YES/NO",
+            names = {"-pers", "--persistence"},
+            description = "Process persistence XML files YES/NO",
             arity = "0..1"
     )
     public static boolean processPersistence;
