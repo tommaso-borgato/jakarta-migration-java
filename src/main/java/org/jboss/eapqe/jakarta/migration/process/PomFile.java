@@ -21,6 +21,8 @@ import org.eclipse.aether.resolution.DependencyResolutionException;
 import org.jboss.eapqe.jakarta.migration.JavaxToJakarta;
 import org.jboss.eapqe.jakarta.migration.os.OsCommandResult;
 import org.jboss.eapqe.jakarta.migration.os.OsCommandRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -36,6 +38,8 @@ import java.util.Map;
  * https://github.com/apache/maven-resolver/blob/master/maven-resolver-demos/maven-resolver-demo-snippets/src/main/java/org/apache/maven/resolver/examples/GetDependencyTree.java
  */
 public class PomFile {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PomFile.class);
 
     // TODO: enrich the list
     private final static List<String> javaEE8dependencies = Arrays.asList(
@@ -295,6 +299,8 @@ public class PomFile {
         transformed.put("wildfly-xts","org.wildfly:wildfly-xts-jakarta");
         transformed.put("wildfly-client-all","org.wildfly:wildfly-client-all-jakarta");
         transformed.put("wildfly-ee-9-source-transform-parent","org.wildfly:wildfly-ee-9-source-transform-parent");
+        // WildFLy Core (https://github.com/wildfly/wildfly-core/tree/main/jakartaee)
+        transformed.put("wildfly-elytron-integration","org.wildfly.core:wildfly-elytron-integration-jakarta");
     }
 
     // TODO: remove this list
@@ -442,6 +448,7 @@ public class PomFile {
         if (!JavaxToJakarta.analyzeDependencies) {
             return;
         }
+        LOGGER.info("Processing pom.xml file {}", path.toFile().getAbsolutePath());
 
         if (false) {
             MavenXpp3Reader reader = new MavenXpp3Reader();

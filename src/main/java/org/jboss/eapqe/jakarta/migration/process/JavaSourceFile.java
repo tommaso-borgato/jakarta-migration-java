@@ -166,6 +166,7 @@ public class JavaSourceFile {
         if (!JavaxToJakarta.processJavaSources) {
             return;
         }
+        LOGGER.info("Processing java file {}", path.toFile().getAbsolutePath());
 
         String initialContent = Files.readString(path);
         String finalContent = new String(initialContent.getBytes());

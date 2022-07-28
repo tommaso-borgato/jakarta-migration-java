@@ -22,25 +22,32 @@ public class JavaxToJakarta implements Runnable {
     public static String directory;
 
     @CommandLine.Option(
-            names = {"-dep", "--dependencies"},
-            description = "Analyze dependencies YES/NO",
-            arity = "0..1"
-    )
-    public static boolean analyzeDependencies;
-
-    @CommandLine.Option(
             names = {"-java", "--java-sources"},
-            description = "Process Java source files YES/NO",
+            description = "Fix the imports",
             arity = "0..1"
     )
     public static boolean processJavaSources;
 
     @CommandLine.Option(
+            names = {"-dep", "--dependencies"},
+            description = "Highlight the Java EE dependencies in pom.xml which need to be replaced",
+            arity = "0..1"
+    )
+    public static boolean analyzeDependencies;
+
+    @CommandLine.Option(
             names = {"-xmlns", "--xml-schema-namespaces"},
-            description = "Process XML Schema Namespaces and properties YES/NO",
+            description = "XML Schema Namespaces YES/NO",
             arity = "0..1"
     )
     public static boolean processXmlSchemaNamespaces;
+
+    @CommandLine.Option(
+            names = {"-props", "--properties"},
+            description = "Rename properties prefixed with javax",
+            arity = "0..1"
+    )
+    public static boolean processProperties;
 
     /**
      * Process all files in the projects root directory according to the options specifies as command line arguments
@@ -56,6 +63,7 @@ public class JavaxToJakarta implements Runnable {
         LOGGER.info("analyzeDependencies: {}", analyzeDependencies);
         LOGGER.info("processJavaSources: {}", processJavaSources);
         LOGGER.info("processXmlSchemaNamespaces: {}", processXmlSchemaNamespaces);
+        LOGGER.info("processProperties: {}", processProperties);
 
         ProcessFiles fileProcessor = new ProcessFiles();
         try {

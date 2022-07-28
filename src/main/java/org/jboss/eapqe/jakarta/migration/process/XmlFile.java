@@ -48,9 +48,10 @@ public class XmlFile {
     }
 
     public void process() throws IOException {
-        if (!JavaxToJakarta.processXmlSchemaNamespaces) {
+        if (!(JavaxToJakarta.processXmlSchemaNamespaces || JavaxToJakarta.processProperties)) {
             return;
         }
+        LOGGER.info("Processing XML file {}", path.toFile().getAbsolutePath());
 
         String content = Files.readString(path);
         if (content.contains("http://xmlns.jcp.org/xml/ns/javaee/web-facesuicomponent_2_0.xsd")) {
@@ -60,20 +61,24 @@ public class XmlFile {
         String finalContent = new String(content.getBytes());
 
         // replace namespaces
-        for (Map.Entry<String, String> entry : javaEESchemas.entrySet()) {
-            finalContent = finalContent.replaceAll(entry.getKey(), entry.getValue());
+        if (JavaxToJakarta.processXmlSchemaNamespaces) {
+            for (Map.Entry<String, String> entry : javaEESchemas.entrySet()) {
+                finalContent = finalContent.replaceAll(entry.getKey(), entry.getValue());
+            }
+            // updated the API "version": it's important to do so because "version" is what really matters regardless
+            // what API schema version is referenced
+            if (finalContent.contains("<persistence ") && finalContent.contains("</persistence>")) {
+                finalContent = replaceVersion("<persistence ", finalContent,"3.0");
+            }
+            if (finalContent.contains("<permissions ") && finalContent.contains("</permissions>")) {
+                System.out.println("\n\n\n permissions \n\n");
+                finalContent = replaceVersion("<permissions ", finalContent,"9");
+            }
         }
 
         // replace properties
-        finalContent = replaceProperties(finalContent);
-
-        if (finalContent.contains("<persistence ") && finalContent.contains("</persistence>")) {
-            finalContent = replaceVersion(finalContent,"3.0");
-        }
-
-        if (finalContent.contains("<permissions ") && finalContent.contains("</permissions>")) {
-            System.out.println("\n\n\n permissions \n\n");
-            finalContent = replaceVersion(finalContent,"9");
+        if (JavaxToJakarta.processProperties) {
+            finalContent = replaceProperties(finalContent);
         }
 
         if (!content.equalsIgnoreCase(finalContent)) {
@@ -86,8 +91,8 @@ public class XmlFile {
         return str.replaceAll("(<property.*) name=\"javax\\.","$1 name=\"jakarta.");
     }
 
-    private String replaceVersion(String str, String version) {
-        return str.replaceFirst("(version=\")[^\"]+(\")", "$1" + version + "$2");
+    private String replaceVersion(String prefix, String str, String version) {
+        return str.replaceFirst("(?s)(" + prefix + ".*version=\")[^\"]+(\")", "$1" + version + "$2");
     }
 
 }
