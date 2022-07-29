@@ -74,11 +74,21 @@ public class XmlFile {
                 System.out.println("\n\n\n permissions \n\n");
                 finalContent = replaceVersion("<permissions ", finalContent,"9");
             }
+            if (finalContent.contains("<web-app ") && finalContent.contains("</web-app>")) {
+                finalContent = replaceVersion("<web-app ", finalContent,"5.0");
+            }
+            if (finalContent.contains("<faces-config ") && finalContent.contains("</faces-config>")) {
+                finalContent = replaceVersion("<faces-config ", finalContent,"3.0");
+            }
         }
 
         // replace properties
         if (JavaxToJakarta.processProperties) {
             finalContent = replaceProperties(finalContent);
+            if (finalContent.contains("<web-app ") && finalContent.contains("</web-app>")) {
+                finalContent = finalContent.replaceAll("<servlet-class>javax\\.", "<servlet-class>jakarta.");
+                finalContent = finalContent.replaceAll("<param-name>javax\\.", "<param-name>jakarta.");
+            }
         }
 
         if (!content.equalsIgnoreCase(finalContent)) {

@@ -494,7 +494,7 @@ public class PomFile {
             depTreeStr = depTreeStr.replace(entry.getKey(), ANSI_YELLOW_BACKGROUND + ANSI_BLUE + entry.getKey() + " --> " + entry.getValue() + ANSI_RESET);
         }
 
-        System.out.println("\n\n\n\ndepTreeStr:\n\n" + depTreeStr);
+        System.out.println("\n\n\n==========================\nDependency Tree:\n==========================\n\n" + depTreeStr);
     }
     private OsCommandRunner getOsCommandRunner() {
         if(this.osCommandRunner == null){
