@@ -122,7 +122,6 @@ public class JavaSourceFile {
         javaxPackages.put("javax.servlet.jsp.jstl.tlv.", "jakarta.servlet.jsp.jstl.tlv.");
         javaxPackages.put("javax.servlet.jsp.tagext.", "jakarta.servlet.jsp.tagext.");
         javaxPackages.put("javax.servlet.", "jakarta.servlet.");
-        javaxPackages.put("javax.transaction.xa.", "jakarta.transaction.xa.");
         javaxPackages.put("javax.transaction.", "jakarta.transaction.");
         javaxPackages.put("javax.validation.bootstrap.", "jakarta.validation.bootstrap.");
         javaxPackages.put("javax.validation.constraints.", "jakarta.validation.constraints.");
