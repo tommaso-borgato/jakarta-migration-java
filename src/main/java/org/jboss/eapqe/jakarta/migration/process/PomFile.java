@@ -212,7 +212,6 @@ public class PomFile {
             "javax.servlet.jsp.jstl.tlv",
             "javax.servlet.jsp.tagext",
             "javax.transaction",
-            "javax.transaction.xa",
             "javax.validation",
             "javax.validation.bootstrap",
             "javax.validation.constraints",
